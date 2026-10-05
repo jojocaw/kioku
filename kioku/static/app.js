@@ -135,6 +135,9 @@ function eventChip(e) {
   if (e.tool === 'recall_check') {
     return `<button class="ev allow" data-receipt="${esc(e.receipt)}" title="receipt ${esc(e.receipt)}">checked · searched the notes before saying “I don't know”</button>`;
   }
+  if (e.tool === 'action_check') {
+    return `<button class="ev allow" data-receipt="${esc(e.receipt)}" title="receipt ${esc(e.receipt)}">checked · asked the guard to decide, not the model</button>`;
+  }
   if (e.tool === 'reply_check') {
     const text = e.rule === 'honesty.note_added' ? 'checked · told you plainly what was not done' : 'checked · the reply said “done”, so Kioku did it';
     return `<button class="ev ${esc(e.decision)}" data-receipt="${esc(e.receipt)}" title="${esc(e.detail)} · receipt ${esc(e.receipt)}">${esc(text)}</button>`;

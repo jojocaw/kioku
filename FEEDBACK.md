@@ -36,7 +36,9 @@ Notes from building Kioku (October 2026). Everything below was observed in this 
 4. **"Saved!" without saving.** Lightning (thinking off) sometimes replies "Saved" or "I'll remind you next August"
    without calling the tool. We added an honesty check in code that compares the reply's claims with the tools that
    actually ran — saving a note or task is then done through the same guard rules, and "sent" / "paid" claims are
-   corrected in front of the owner.
+   corrected in front of the owner. It also wrote "Queued as payment A-010" with no tool call (about one ask in
+   three for a large payment, after an earlier message had been queued), so a request to pay or send that comes
+   back without a tool call is now asked again once, and the guard decides.
 5. **Mental arithmetic.** Lightning (thinking off) answered "8% on 28 bags a month is about ¥1,904" — the right
    figure is ¥14,000. Because the journal then quoted the reply, the wrong number reached the monthly review and the
    index. We added a `calculate` tool and stopped journals from reading the assistant's own replies.

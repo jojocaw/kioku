@@ -271,13 +271,17 @@ def check_tool_rules(call: ToolCall, max_payment: float = MAX_PAYMENT, context: 
 # (they wait for the owner), so a reply that says "sent" or "paid" is always wrong.
 CLAIMS = [
     ('save_memory', re.compile(r"(?i)(?:^|[.!?:—–]\s*)saved\b|\b(?:i(?:'ve| have) (?:just )?(?:saved|noted|stored|recorded|logged)|(?:saved|stored|logged) "
-                               r"(?:it|this|that|to your)|noted (?:it|this|that) (?:down|in your)|(?:it's|it is) (?:saved|in your notes)"
+                               r"(?:it|this|that|to your|in your|under|as(?! (?:much|many|well|long|far|soon)))|noted (?:it|this|that) (?:down|in your)|(?:it's|it is) (?:saved|in your notes)"
                                r"|i(?:'ll| will) (?:remember (?:it|this|that)|keep (?:it|this|that) in mind))")),
     ('add_task', re.compile(r"(?i)\b(?:i(?:'ll| will) remind you|i(?:'ve| have) (?:added|set)(?: up)? (?:a |the )?(?:task|reminder)"
                             r"|added (?:it |this |that )?(?:as )?(?:a |to your )?task|(?:set|scheduled) (?:a|the) reminder"
                             r"|flag(?:ged)? (?:this|it) in (?:the|your) task list)")),
-    ('send_message', re.compile(r"(?i)\b(?:i(?:'ve| have) (?:sent|emailed)|(?:has|have) been (?:sent|emailed)|(?:email|message) (?:is|was) sent)\b")),
+    ('send_message', re.compile(r"(?i)\b(?:i(?:'ve| have) (?:sent|emailed)|(?:has|have) been (?:sent|emailed)|(?:email|message) (?:was|is now) sent)\b")),
     ('make_payment', re.compile(r"(?i)\b(?:i(?:'ve| have) paid|(?:has|have) been paid|payment (?:is|was|has been) (?:made|completed|sent|done))\b")),
+    # "queued for your approval" is true only when a tool in this turn was queued (done then holds 'queue')
+    ('queue', re.compile(r"(?i)\bi(?:'ve| have) (?:just )?queued\b|\b(?:has|have) been queued\b|\b(?:is|it's|are|will be) (?:now )?queued\b"
+                         r"|(?:^|[.!?:—–]\s*)queued\b|\bqueued (?:for your approval|as (?:a |message |payment |approval )?[A-Z]-\d+)"
+                         r"|\b(?:is|it's|are|now) (?:waiting|pending) (?:for )?your approval\b|\bawaiting your approval\b")),
     ('complete_task', re.compile(r"(?i)\bi(?:'ve| have|'ll| will) (?:also |now |just |go ahead and )?mark(?:ed)?\b[^.!?\n]{0,40}?\b(?:done|complete(?:d)?|finished)\b"
                                  r"|\b(?:is|has been) (?:now )?marked (?:as )?(?:done|complete(?:d)?|finished)\b")),
 ]
@@ -286,11 +290,13 @@ CLAIMS = [
 NOT_DONE = {'save_memory': 'nothing was saved — passwords and card numbers are never kept in your notes',
             'add_task': 'no task was added', 'send_message': 'nothing was sent — messages go out only after you approve them',
             'make_payment': 'nothing was paid — payments happen only after you approve them',
-            'complete_task': 'no task was marked done'}
+            'complete_task': 'no task was marked done',
+            'queue': 'nothing was queued for your approval — ask again and it will wait in the approvals panel'}
 
 
 def unbacked_claims(text: str, done: set[str]) -> list[str]:
-    """Tools the reply claims were used that did not run (done = tools allowed and run in this turn)."""
+    """Tools the reply claims were used that did not run (done = tools allowed and run in this turn, plus 'queue' when
+    something was queued for the owner)."""
     return [tool for tool, rx in CLAIMS
             if rx.search(text or '') and (tool in ('send_message', 'make_payment') or tool not in done)]
 

@@ -56,7 +56,9 @@ an index, and every answer points at a note the owner can open.
 | `budget.daily` | a per-day token and dollar budget with a hard stop, checked before each call |
 | `honesty.kept_promise` | the reply says "saved" or "I'll remind you" but no tool did it → Kioku does it now, through the same rules |
 | `honesty.note_added` | the reply says "sent" or "paid" (never true inside a turn) → the owner is told plainly that it did not happen |
+| `honesty.note_added` (queue, task) | the reply says something is "queued for your approval" or "marked done" when nothing was → the owner is told plainly |
 | `recall.search_first` | the answer to a question gives up ("I don't know") without having searched → Kioku searches the notes and asks again |
+| `action.guard_decides` | a request to pay or send is answered without the tool ("decide in your panel") → Kioku asks again, so the guard decides |
 
 The model cannot read or change these rules, and no text in the chat can approve anything. Every decision is appended
 to `audit.jsonl` as a receipt (`R-00042`) holding counts and kinds — never the personal data itself.
