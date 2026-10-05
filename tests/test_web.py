@@ -87,6 +87,13 @@ def test_the_server_refuses_what_it_should(demo):
     assert call(base, '/api/run', {'job': 'rm -rf'}, cookie)[0] == 400
 
 
+def test_head_requests_get_headers_only(demo):
+    app, base, scripted = demo
+    for path in ('/healthz', '/'):
+        with urllib.request.urlopen(urllib.request.Request(base + path, method='HEAD')) as r:
+            assert r.status == 200 and r.read() == b'' and int(r.headers['Content-Length']) > 0
+
+
 def test_the_recall_check_is_shown_but_not_copied_into_sandboxes(tmp_path, demo):
     app, base, scripted = demo
     assert call(base, '/api/usage')[1]['recall'] is None  # no results published for this seed

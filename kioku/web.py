@@ -297,7 +297,8 @@ def make_handler(app: App):
                 secure = '; Secure' if self.headers.get('X-Forwarded-Proto') == 'https' else ''
                 self.send_header('Set-Cookie', f'kioku_sid={sid}; Path=/; HttpOnly; SameSite=Lax; Max-Age=86400{secure}')
             self.end_headers()
-            self.wfile.write(body)
+            if self.command != 'HEAD':
+                self.wfile.write(body)
 
         def _json(self, code: int, data: dict, sid: str = '') -> None:
             self._send(code, json.dumps(data, ensure_ascii=False).encode('utf-8'), 'application/json; charset=utf-8', sid)
@@ -355,6 +356,9 @@ def make_handler(app: App):
                 turns = [t for t in k.memory.log_for(k.clock().date()) if t.get('role') in ('owner', 'kioku')]
                 return self._json(200, dict(turns=turns[-40:]), new_sid)
             return self._json(404, dict(error='Not found.'), new_sid)
+
+        def do_HEAD(self):  # uptime checks and link previews: the same headers as GET, no body
+            self.do_GET()
 
         def do_POST(self):
             url = urlparse(self.path)
