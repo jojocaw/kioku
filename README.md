@@ -121,7 +121,7 @@ kept for the reviews that read a whole week or month.
 Python 3.11 or newer; no packages to install.
 
 ```bash
-git clone <this repo> && cd kioku
+git clone https://github.com/jojocaw/kioku && cd kioku
 echo "NEBIUS_API_KEY=..." > .env          # a Token Factory API key
 python -m kioku chat                      # talk to your own Kioku (memory in ./data/default)
 python -m kioku.web                       # the same in your browser at http://127.0.0.1:8700
@@ -133,7 +133,8 @@ Settings come from the environment (or `.env`): `KIOKU_DATA_DIR`, `KIOKU_TIMEZON
 Sending and paying are simulated (written to `outbox.jsonl` / `payments.jsonl` after approval); a real deployment
 would plug providers in behind the same approval step.
 
-Demo server: `python -m kioku.web --demo demo/seed --host 0.0.0.0 --daily-usd 1`.
+Demo server: `python -m kioku.web --demo demo/seed --host 0.0.0.0 --daily-usd 1`. `render.yaml` deploys the same on
+Render's free plan (set `NEBIUS_API_KEY` in the dashboard; the shared daily cap keeps the demo's spend fixed).
 
 Tests: `pip install pytest && python -m pytest` (scripted fake model, no network).
 
