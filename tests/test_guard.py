@@ -124,6 +124,9 @@ def test_receipts_use_the_kioku_clock(make_kioku):
     ("The email has been sent to Mill Co.", {'send_message'}, ['send_message']),  # never done inside a turn
     ("Queued for your approval as A-004; once you approve, it goes out.", set(), []),
     ("Payment was made to Sato.", set(), ['make_payment']),
+    ("I can't approve it. I'll note that task A-001 is marked done.", set(), ['complete_task']),
+    ("I've marked the oven check as done.", {'complete_task'}, []),
+    ("I can't mark approvals as done — only you can decide them.", set(), []),
 ])
 def test_unbacked_claims(text, done, expected):
     from kioku.guard import unbacked_claims

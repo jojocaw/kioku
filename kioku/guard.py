@@ -278,12 +278,15 @@ CLAIMS = [
                             r"|flag(?:ged)? (?:this|it) in (?:the|your) task list)")),
     ('send_message', re.compile(r"(?i)\b(?:i(?:'ve| have) (?:sent|emailed)|(?:has|have) been (?:sent|emailed)|(?:email|message) (?:is|was) sent)\b")),
     ('make_payment', re.compile(r"(?i)\b(?:i(?:'ve| have) paid|(?:has|have) been paid|payment (?:is|was|has been) (?:made|completed|sent|done))\b")),
+    ('complete_task', re.compile(r"(?i)\bi(?:'ve| have|'ll| will) (?:also |now |just |go ahead and )?mark(?:ed)?\b[^.!?\n]{0,40}?\b(?:done|complete(?:d)?|finished)\b"
+                                 r"|\b(?:is|has been) (?:now )?marked (?:as )?(?:done|complete(?:d)?|finished)\b")),
 ]
 
 
 NOT_DONE = {'save_memory': 'nothing was saved — passwords and card numbers are never kept in your notes',
             'add_task': 'no task was added', 'send_message': 'nothing was sent — messages go out only after you approve them',
-            'make_payment': 'nothing was paid — payments happen only after you approve them'}
+            'make_payment': 'nothing was paid — payments happen only after you approve them',
+            'complete_task': 'no task was marked done'}
 
 
 def unbacked_claims(text: str, done: set[str]) -> list[str]:
