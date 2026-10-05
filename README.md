@@ -152,4 +152,5 @@ kioku/scheduler.py  the daily rhythm (a tiny cron with catch-up)
 kioku/llm.py        Token Factory client, routing, usage ledger
 kioku/web.py        web app and visitor sandboxes; kioku/static/ = the page
 demo/               the fictional persona, the seed script, the recall check
+demo/video/         the demo video's recorder: the running app, real model replies, captions on screen
 ```
