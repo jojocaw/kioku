@@ -8,7 +8,7 @@ It runs on **NVIDIA Nemotron** open models through **Nebius Token Factory**, and
 512 MB host: the whole app is standard-library Python (no dependencies).
 
 - **Live demo: https://kioku-demo.onrender.com** (free host, kept awake until the judging ends on 2026-12-15; if it
-  was asleep, the first visit can take up to a minute) · Video (under 3 min): _(link)_
+  was asleep, the first visit can take up to a minute) · **Video (2:37): https://youtu.be/5eRbULrrlyU**
 - Track: Personal AI · License: MIT
 
 ---
