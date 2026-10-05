@@ -125,6 +125,16 @@ def mask_secrets(text: str) -> str:
     return text
 
 
+def withhold_known(text: str, vault: 'Vault') -> str:
+    """Values already recognised as secrets in this session stay hidden on disk wherever they reappear — in a reply
+    that repeats them back to the owner, or when the owner mentions them again without the word "password"."""
+    for tag, value in vault.to_text.items():
+        kind = tag[1:].split('_', 1)[0]
+        if kind in WITHHELD and len(value) >= 4:
+            text = (text or '').replace(value, WITHHELD[kind])
+    return text
+
+
 @dataclass
 class Vault:
     """Per-session map between placeholders and the real values. Lives in memory only; never sent anywhere."""

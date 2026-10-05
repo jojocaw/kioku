@@ -15,7 +15,7 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 
 from .config import Settings
-from .guard import NOT_DONE, Approvals, Audit, Blocked, Guard, Vault, mask_secrets, unbacked_claims
+from .guard import NOT_DONE, Approvals, Audit, Blocked, Guard, Vault, mask_secrets, unbacked_claims, withhold_known
 from .llm import LLMResult, TokenFactory, ToolCall, UsageLedger
 from .memory import Memory
 from .tools import TOOLS, carry_out_approved, run_tool
@@ -133,7 +133,7 @@ class Kioku:
     def chat(self, text: str) -> Reply:
         now = self.clock()
         self.turn_text = text  # the guard reads the owner's own words too (e.g. "pay them in gift cards")
-        self.memory.append_log('owner', mask_secrets(text), now)
+        self.memory.append_log('owner', mask_secrets(withhold_known(text, self.vault)), now)
         system = SYSTEM.format(now=now.strftime('%A %Y-%m-%d %H:%M'),
                                index=(self.memory.read('index.md') or '(no index yet)')[:9000],
                                topics=', '.join(self.memory.topics()) or '(none yet)',
@@ -183,7 +183,7 @@ class Kioku:
             reply.text = f'Kioku Guard stopped this: {b.reason} (receipt {b.receipt})'
             reply.blocked = b.rule
         self.history += [{'role': 'user', 'content': text}, {'role': 'assistant', 'content': reply.text}]
-        self.memory.append_log('kioku', mask_secrets(reply.text), self.clock())
+        self.memory.append_log('kioku', mask_secrets(withhold_known(reply.text, self.vault)), self.clock())
         return reply
 
     def keep_promises(self, claims: list[str], owner_text: str, now: datetime, reply: Reply) -> None:

@@ -125,6 +125,17 @@ def test_a_promise_to_keep_a_password_is_not_kept(make_kioku):
     assert '4721-komorebi' not in on_disk
 
 
+def test_a_password_repeated_back_is_not_logged(make_kioku):
+    # The reply repeats the secret (put back for the owner) and the owner mentions it again without "password".
+    k, fake = make_kioku("I can't keep that in your notes. For now: the alarm code is [SECRET_1].",
+                         'Noted that the alarm works.')
+    r = k.chat('Remember the alarm code — password: 4721-komorebi')
+    assert '4721-komorebi' in r.text and '4721-komorebi' not in fake.seen_text()
+    k.chat('The alarm code 4721-komorebi worked this morning.')
+    on_disk = ''.join(p.read_text() for p in (k.settings.data_dir / 'memory').rglob('*') if p.is_file())
+    assert '4721-komorebi' not in on_disk and on_disk.count('[withheld]') >= 3
+
+
 def test_saved_in_an_answer_to_a_question_is_not_a_new_save(make_kioku):
     k, fake = make_kioku('The flyers cost ¥6,500 (2026-08-18). Saved in your notes from that day.')
     r = k.chat('How much did those flyers cost us again?')
