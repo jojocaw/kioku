@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kioku</title>
+<meta name="description" content="A private AI secretary whose memory grows, with rules enforced outside the model.">
+<link rel="stylesheet" href="/static/app.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f6f5c'/%3E%3Ctext x='16' y='22' font-size='16' text-anchor='middle' fill='white' font-family='sans-serif'%3E記%3C/text%3E%3C/svg%3E">
+<script src="/static/app.js" defer></script>
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <span class="mark" aria-hidden="true">記</span>
+    <div>
+      <h1>Kioku</h1>
+      <p class="tag">A private AI secretary whose memory grows — with rules enforced outside the model.</p>
+    </div>
+  </div>
+  <div class="who" id="who"></div>
+</header>
+
+<section class="stats" id="stats" aria-label="What Kioku holds"></section>
+
+<nav class="tabs" role="tablist" aria-label="Views">
+  <button role="tab" data-tab="chat" class="only-narrow">Chat</button>
+  <button role="tab" data-tab="memory">Memory</button>
+  <button role="tab" data-tab="guard">Guard</button>
+  <button role="tab" data-tab="approvals">Approvals <span class="count" id="pending-count"></span></button>
+  <button role="tab" data-tab="usage">Models &amp; cost</button>
+  <button role="tab" data-tab="rhythm">Daily rhythm</button>
+</nav>
+
+<main class="layout">
+  <section class="panel chat" id="panel-chat" aria-label="Chat">
+    <div class="msgs" id="msgs" aria-live="polite"></div>
+    <div class="suggest" id="suggest"></div>
+    <form class="composer" id="composer">
+      <textarea id="input" rows="2" maxlength="1000" placeholder="Message Kioku… (Enter to send, Shift+Enter for a new line)" aria-label="Message"></textarea>
+      <button type="submit" id="send">Send</button>
+    </form>
+    <p class="fine" id="limits"></p>
+  </section>
+
+  <section class="panel side">
+    <div class="view" id="panel-memory" hidden>
+      <div class="mem">
+        <aside class="tree" id="tree" aria-label="Memory files"></aside>
+        <article class="note" id="note"></article>
+      </div>
+    </div>
+
+    <div class="view" id="panel-guard" hidden>
+      <p class="lead">Every model call and every tool call gets a receipt. Personal data is replaced before anything leaves; payments and messages wait for the owner; some things are never allowed. The model cannot change these rules.</p>
+      <div class="filters" id="guard-filters">
+        <button data-f="all" class="on">All</button>
+        <button data-f="block">Blocked</button>
+        <button data-f="ask">Asked the owner</button>
+        <button data-f="redact">Personal data hidden</button>
+        <button data-f="owner">Owner decisions</button>
+      </div>
+      <div class="summary" id="guard-summary"></div>
+      <div class="table-wrap"><table class="receipts" id="receipts"><thead><tr><th>Receipt</th><th>Time</th><th>What</th><th>Decision</th><th>Rule</th><th>Why</th></tr></thead><tbody></tbody></table></div>
+    </div>
+
+    <div class="view" id="panel-approvals" hidden>
+      <p class="lead">Sending and paying always wait here. <strong>These buttons are the owner's controls</strong> — plain buttons on this page. No tool, and no text in the chat, can press them.</p>
+      <div id="approvals"></div>
+    </div>
+
+    <div class="view" id="panel-usage" hidden>
+      <p class="lead">Each job goes to the NVIDIA Nemotron model that fits it, on Nebius Token Factory. Everyday turns and tool calls use <strong>Nemotron 3.5 Lightning</strong> with thinking off; weekly and monthly reviews use <strong>Nemotron 3 Super</strong>. Real numbers from this memory's life:</p>
+      <div id="usage"></div>
+    </div>
+
+    <div class="view" id="panel-rhythm" hidden>
+      <p class="lead">Memory grows through habits, not chat alone: a journal every night, a briefing every morning, a weekly review on Sunday, a monthly review on the 1st. Each one reads the level below it and updates the topic notes and the index Kioku reads first.</p>
+      <ol class="rhythm">
+        <li><b>Every night</b> — daily journal: today's talk and notes → key points, decisions, open questions, topic updates <span class="pill">Lightning</span></li>
+        <li><b>Every morning</b> — briefing: what is still open, tasks, and the same day last week / month / year <span class="pill">Lightning</span></li>
+        <li><b>Sunday</b> — weekly review: the week's journals → patterns, decisions, what didn't work; topics' current state; lasting facts <span class="pill">Super</span></li>
+        <li><b>1st of the month</b> — monthly review: the month's weeks → numbers, trends, lessons <span class="pill">Super</span></li>
+      </ol>
+      <div class="run">
+        <button data-job="briefing">Run this morning's briefing</button>
+        <button data-job="journal">Write tonight's journal now</button>
+        <button data-job="weekly">Redo last week's review</button>
+      </div>
+      <p class="fine">Tip: talk to Kioku first, then write tonight's journal — your conversation becomes part of the memory.</p>
+      <article class="note" id="run-out"></article>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <p>Kioku runs on NVIDIA Nemotron models through Nebius Token Factory. The bakery and everyone in it are fictional; each visitor gets a private copy that resets. <a href="#" id="reset">Start over</a></p>
+</footer>
+</body>
+</html>

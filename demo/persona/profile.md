@@ -1,0 +1,8 @@
+- I'm Rin Mori (she/her). I run Komorebi Bakery, a small neighbourhood bakery I opened in 2017.
+- Open Tuesday to Sunday, 7:00–16:00. Closed on Mondays. Baking starts at 4:00.
+- Team: Ken (baker, with me since 2018) and Aiko (part-time at the counter, Tuesday, Thursday and Saturday).
+- Signature: the butter croissant, ¥380. About 200 on a weekday, 280–300 on a Saturday.
+- Flour from Mill Co (25 kg bags, about 28 a month). Butter and milk from Hoshino Dairy.
+- Two deck ovens; Sato Kitchen Service looks after them.
+- My daughter Mei is 8. I want more Sundays with her.
+- What I want from Kioku: remember what I tell you, keep me on top of numbers and suppliers, and never share private details.

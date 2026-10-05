@@ -1,0 +1,117 @@
+[
+ {
+  "id": "A-001",
+  "tool": "send_message",
+  "arguments": {
+   "to": "Ken",
+   "subject": "Oven #2 thermostat repair",
+   "body": "Hi Ken, the thermostat on oven #2 is dead and the part arrives tomorrow morning. Sato Kitchen Service will replace it then. Let me know if you need anything adjusted in the meantime."
+  },
+  "reason": "send a message to [NAME_2]",
+  "receipt": "R-00164",
+  "status": "approved",
+  "created": "2026-08-06T14:00:00+09:00",
+  "decided": "2026-08-06T14:03:00+09:00"
+ },
+ {
+  "id": "A-002",
+  "tool": "make_payment",
+  "arguments": {
+   "what": "oven #2 repair - part and labour",
+   "amount": 48000,
+   "currency": "JPY",
+   "payee": "Sato Kitchen Service"
+  },
+  "reason": "pay 48000 JPY for \"oven #2 repair - part and labour\" to \"Sato Kitchen Service\"",
+  "receipt": "R-00170",
+  "status": "approved",
+  "created": "2026-08-07T13:30:00+09:00",
+  "decided": "2026-08-07T13:33:00+09:00"
+ },
+ {
+  "id": "A-003",
+  "tool": "make_payment",
+  "arguments": {
+   "what": "flyer printing",
+   "amount": 6500,
+   "currency": "JPY",
+   "payee": "Hikari Print"
+  },
+  "reason": "pay 6500 JPY for \"flyer printing\" to \"Hikari Print\"",
+  "receipt": "R-00211",
+  "status": "approved",
+  "created": "2026-08-18T09:30:00+09:00",
+  "decided": "2026-08-18T09:33:00+09:00"
+ },
+ {
+  "id": "A-004",
+  "tool": "make_payment",
+  "arguments": {
+   "what": "JobPost Plus ad for weekend helper",
+   "amount": 15000,
+   "currency": "JPY",
+   "payee": "JobPost Plus"
+  },
+  "reason": "pay 15000 JPY for \"JobPost Plus ad for weekend helper\" to \"JobPost Plus\"",
+  "receipt": "R-00239",
+  "status": "rejected",
+  "created": "2026-08-25T10:30:00+09:00",
+  "decided": "2026-08-25T11:00:00+09:00"
+ },
+ {
+  "id": "A-005",
+  "tool": "send_message",
+  "arguments": {
+   "to": "kitano.sales@example.com",
+   "subject": "Flour quote request - 25kg bags, October delivery",
+   "body": "Hello,\n\nI'm writing from Komorebi Bakery to request a quote for 25 kg bags of bread flour, approximately 28 bags per month, with deliveries starting from October.\n\nCould you please provide your current pricing and delivery schedule?\n\nBest regards,\nKomorebi Bakery"
+  },
+  "reason": "send a message to [EMAIL_1]",
+  "receipt": "R-00339",
+  "status": "approved",
+  "created": "2026-09-15T10:00:00+09:00",
+  "decided": "2026-09-15T10:03:00+09:00"
+ },
+ {
+  "id": "A-006",
+  "tool": "send_message",
+  "arguments": {
+   "to": "orders@aoba-flour.example.com",
+   "subject": "Flour quote request - 25kg bags, October delivery",
+   "body": "Hello,\n\nI'm writing from Komorebi Bakery to request a quote for 25 kg bags of bread flour, approximately 28 bags per month, with deliveries starting from October.\n\nCould you please provide your current pricing and delivery schedule?\n\nBest regards,\nKomorebi Bakery"
+  },
+  "reason": "send a message to [EMAIL_2]",
+  "receipt": "R-00340",
+  "status": "approved",
+  "created": "2026-09-15T10:00:00+09:00",
+  "decided": "2026-09-15T10:03:00+09:00"
+ },
+ {
+  "id": "A-007",
+  "tool": "send_message",
+  "arguments": {
+   "to": "millco.orders@example.com",
+   "subject": "Loyalty discount request - Mill Co flour",
+   "body": "Dear Mill Co,\n\nWe've been loyal customers for nine years and value our partnership. With your 8% price increase effective October 1st (25kg bag from ¥6,300 to ¥6,800), we wanted to ask if you could offer a loyalty discount to maintain our current rate.\n\nWe typically order about 28 bags per month starting in October. Any consideration would be greatly appreciated.\n\nBest regards,\nKomorebi Bakery"
+  },
+  "reason": "send a message to [EMAIL_3]",
+  "receipt": "R-00402",
+  "status": "approved",
+  "created": "2026-09-26T10:30:00+09:00",
+  "decided": "2026-09-26T10:33:00+09:00"
+ },
+ {
+  "id": "A-008",
+  "tool": "send_message",
+  "arguments": {
+   "to": "Mill Co",
+   "subject": "Re: Flour price and loyalty discount",
+   "body": "Thank you for the 2% loyalty discount — ¥6,664 per 25kg bag from October 1. We'll stay with Mill Co and keep our croissant price at ¥380. Best regards, Komorebi Bakery"
+  },
+  "reason": "send a message to Mill Co",
+  "receipt": "R-00423",
+  "status": "approved",
+  "created": "2026-09-29T09:40:00+09:00",
+  "decided": "2026-09-29T09:43:00+09:00"
+ }
+]

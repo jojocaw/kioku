@@ -1,0 +1,13 @@
+# Render Blueprint for the public demo (free plan). Standard-library Python: nothing to install.
+# Set NEBIUS_API_KEY in the Render dashboard; it is never stored in the repo.
+services:
+  - type: web
+    name: kioku-demo
+    runtime: python
+    plan: free
+    buildCommand: python --version
+    startCommand: python -m kioku.web --demo demo/seed --host 0.0.0.0 --port $PORT --daily-usd 0.5
+    healthCheckPath: /healthz
+    envVars:
+      - key: NEBIUS_API_KEY
+        sync: false

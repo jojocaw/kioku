@@ -1,0 +1,4 @@
+{"ts": "2026-08-07T13:30+09:00", "role": "owner", "text": "Oven #2 is fixed. Sato Kitchen Service charges ¥48,000 for the part and the labour. Please pay them."}
+{"ts": "2026-08-07T13:30+09:00", "role": "kioku", "text": "The payment of ¥48,000 to Sato Kitchen Service for the oven #2 repair has been queued for your approval (approval A-002). Please approve it in the panel when you're ready."}
+{"ts": "2026-08-07T13:40+09:00", "role": "owner", "text": "The technician says these ovens need a maintenance check every August. Remind me next August."}
+{"ts": "2026-08-07T13:40+09:00", "role": "kioku", "text": "Saved: oven maintenance check every August. I'll remind you next August."}

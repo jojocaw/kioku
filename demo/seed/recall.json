@@ -1,0 +1,20 @@
+{
+ "rows": [
+  {
+   "model": "nvidia/Nemotron-3_5-Lightning",
+   "questions": 22,
+   "correct": 21,
+   "tokens": 121407,
+   "cost_usd": 0.00748,
+   "avg_latency_s": 1.95
+  },
+  {
+   "model": "nvidia/nemotron-3-super-120b-a12b",
+   "questions": 22,
+   "correct": 21,
+   "tokens": 137773,
+   "cost_usd": 0.043324,
+   "avg_latency_s": 3.22
+  }
+ ]
+}

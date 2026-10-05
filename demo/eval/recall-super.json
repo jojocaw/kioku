@@ -1,0 +1,376 @@
+{
+ "summary": {
+  "model": "nvidia/nemotron-3-super-120b-a12b",
+  "questions": 22,
+  "correct": 21,
+  "tokens": 137773,
+  "cost_usd": 0.043324,
+  "avg_latency_s": 3.22
+ },
+ "results": [
+  {
+   "n": 1,
+   "question": "How much did the oven repair cost, and who did it?",
+   "source": "2026-08-07",
+   "ok": true,
+   "hits": [
+    true,
+    true
+   ],
+   "answer": "The oven repair cost ¥48,000 and was carried out by Sato Kitchen Service.",
+   "tools": [],
+   "calls": 1,
+   "tokens": 4074,
+   "cost_usd": 0.001263,
+   "latency_ms": 2057
+  },
+  {
+   "n": 2,
+   "question": "When does the flour price go up, and by how much?",
+   "source": "2026-09-12",
+   "ok": true,
+   "hits": [
+    true,
+    true
+   ],
+   "answer": "The flour price takes effect on **October 1, 2026**. It rises from ¥6,300 to ¥6,664 per 25 kg bag – an increase of ¥364, which is about a 5.8 % rise. (After applying Mill Co’s 2 % loyalty discount, the new price is ¥6,664.)",
+   "tools": [
+    "search_memory"
+   ],
+   "calls": 2,
+   "tokens": 9021,
+   "cost_usd": 0.0030399,
+   "latency_ms": 6812
+  },
+  {
+   "n": 3,
+   "question": "What did a bag of flour cost before the increase?",
+   "source": "2026-09-12",
+   "ok": true,
+   "hits": [
+    true
+   ],
+   "answer": "Before the increase, a 25 kg bag of flour from Mill Co cost **¥6,300** (as noted on 2026‑09‑12).",
+   "tools": [
+    "search_memory"
+   ],
+   "calls": 2,
+   "tokens": 9060,
+   "cost_usd": 0.0028494,
+   "latency_ms": 4339
+  },
+  {
+   "n": 4,
+   "question": "What price per bag did we finally agree with Mill Co?",
+   "source": "2026-09-29",
+   "ok": true,
+   "hits": [
+    true
+   ],
+   "answer": "The agreed price with Mill Co is ¥6,664 per 25 kg bag, effective from October 2026 with the 2 % loyalty discount applied. (source: lasting facts, updated 2026‑W40)",
+   "tools": [],
+   "calls": 1,
+   "tokens": 4290,
+   "cost_usd": 0.0013511999999999999,
+   "latency_ms": 1893
+  },
+  {
+   "n": 5,
+   "question": "What quotes did the other mills give?",
+   "source": "2026-09-22",
+   "ok": true,
+   "hits": [
+    true,
+    true
+   ],
+   "answer": "The other mills gave the following quotes (as of 2026‑09‑27):\n\n- **Kitano Mills:** ¥6,450 per 25 kg bag, with a minimum order of 20 bags (which exceeds the bakery’s storeroom capacity of 12 bags).  \n- **Aoba Flour:** ¥6,700 per 25 kg bag; a single test bag was ordered to evaluate quality.  \n\nThese quotes were recorded in the **flour‑quotes** topic note【{\"id\":\"topics/flour-quotes.md\",\"cursor\":0,\"loc\":0}】. After testing Aoba’s flour, the owner and Ken preferred Mill Co’s flour because the Aoba batch produced less crisp, flatter results【{\"id\":\"topics/flour-quotes.md\",\"cursor\":0,\"loc\":0}】.",
+   "tools": [
+    "search_memory",
+    "read_note"
+   ],
+   "calls": 3,
+   "tokens": 13530,
+   "cost_usd": 0.004276199999999999,
+   "latency_ms": 7159
+  },
+  {
+   "n": 6,
+   "question": "Why didn't we switch to Kitano Mills?",
+   "source": "2026-09-22",
+   "ok": true,
+   "hits": [
+    true,
+    true
+   ],
+   "answer": "We stayed with Mill Co because Kitano Mills requires a minimum order of 20 bags, which exceeds our storeroom capacity of 12 bags, and the Aoba Flour test batch was found to be less crisp—both you and Ken preferred Mill Co’s flour. Hence we kept the current supplier and maintained the croissant price at ¥380. (2026‑10‑04 decision)",
+   "tools": [
+    "search_memory"
+   ],
+   "calls": 2,
+   "tokens": 8856,
+   "cost_usd": 0.0027761999999999995,
+   "latency_ms": 4109
+  },
+  {
+   "n": 7,
+   "question": "Why not Aoba Flour?",
+   "source": "2026-09-24",
+   "ok": true,
+   "hits": [
+    true
+   ],
+   "answer": "Aoba’s test batch produced less crisp, flat croissants that didn’t meet our preference, while we found Mill Co’s flour to be better. (From the flour‑quotes notes on 2026‑09‑24.)",
+   "tools": [],
+   "calls": 1,
+   "tokens": 4148,
+   "cost_usd": 0.0012906,
+   "latency_ms": 3530
+  },
+  {
+   "n": 8,
+   "question": "Did the August flyers work?",
+   "source": "2026-08-22",
+   "ok": false,
+   "hits": [
+    true,
+    false
+   ],
+   "answer": "The August flyers didn’t work well—only 9 out of 500 coupons were redeemed, and you judged them ineffective compared to the Instagram video. (2026‑08‑22)",
+   "tools": [
+    "search_memory"
+   ],
+   "calls": 2,
+   "tokens": 8504,
+   "cost_usd": 0.0026508,
+   "latency_ms": 3930
+  },
+  {
+   "n": 9,
+   "question": "What did the flyers cost?",
+   "source": "2026-08-18",
+   "ok": true,
+   "hits": [
+    true
+   ],
+   "answer": "The flyers cost ¥6,500 for printing 500 copies. (source: topics/flyers.md)",
+   "tools": [
+    "search_memory"
+   ],
+   "calls": 2,
+   "tokens": 8677,
+   "cost_usd": 0.0026750999999999997,
+   "latency_ms": 3633
+  },
+  {
+   "n": 10,
+   "question": "What was our best day for croissants?",
+   "source": "2026-09-19",
+   "ok": true,
+   "hits": [
+    true,
+    true
+   ],
+   "answer": "Our best day for croissants was September 19, 2026, when we sold 412 croissants (the launch day of the chestnut croissant).",
+   "tools": [
+    "search_memory"
+   ],
+   "calls": 2,
+   "tokens": 8445,
+   "cost_usd": 0.0026367,
+   "latency_ms": 4246
+  },
+  {
+   "n": 11,
+   "question": "Which days does Aiko work?",
+   "source": "2026-07-30",
+   "ok": true,
+   "hits": [
+    true,
+    true,
+    true,
+    true
+   ],
+   "answer": "Aiko works on Tuesdays, Wednesdays, Thursdays and Saturdays, starting from September 1. (Based on the schedule approved on 2026‑07‑30.)",
+   "tools": [
+    "search_memory"
+   ],
+   "calls": 2,
+   "tokens": 8885,
+   "cost_usd": 0.0027806999999999997,
+   "latency_ms": 4176
+  },
+  {
+   "n": 12,
+   "question": "When did Yui start, and which days does she work?",
+   "source": "2026-08-29",
+   "ok": true,
+   "hits": [
+    true,
+    true
+   ],
+   "answer": "Yui started on September 5 2026 and works Saturdays and Sundays from 7:00 to 13:00.",
+   "tools": [],
+   "calls": 1,
+   "tokens": 4140,
+   "cost_usd": 0.0012917999999999998,
+   "latency_ms": 2007
+  },
+  {
+   "n": 13,
+   "question": "What were sales in July, August and September?",
+   "source": "2026-09-30",
+   "ok": true,
+   "hits": [
+    true,
+    true,
+    true
+   ],
+   "answer": "July sales were ¥1.86 M, August sales were ¥1.72 M, and September sales reached ¥2.05 M. (July & August from monthly/2026-08.md, September from topics/september-sales.md.)",
+   "tools": [],
+   "calls": 1,
+   "tokens": 4306,
+   "cost_usd": 0.00138,
+   "latency_ms": 2334
+  },
+  {
+   "n": 14,
+   "question": "What time do I start baking now, and why?",
+   "source": "2026-09-16",
+   "ok": true,
+   "hits": [
+    true,
+    true
+   ],
+   "answer": "You now start baking at **4:30 AM**. The shift to 4:30 was made because of your lower‑back pain, as noted on 2026‑09‑16. (2026-09-16)",
+   "tools": [],
+   "calls": 1,
+   "tokens": 4166,
+   "cost_usd": 0.001317,
+   "latency_ms": 2300
+  },
+  {
+   "n": 15,
+   "question": "When does Hoshino Dairy deliver?",
+   "source": "2026-07-23",
+   "ok": true,
+   "hits": [
+    true,
+    true
+   ],
+   "answer": "Hoshino Dairy delivers butter and milk on **Mondays and Thursdays** (starting in August 2026).",
+   "tools": [],
+   "calls": 1,
+   "tokens": 4056,
+   "cost_usd": 0.0012648000000000002,
+   "latency_ms": 2137
+  },
+  {
+   "n": 16,
+   "question": "How many followers did the lamination video bring?",
+   "source": "2026-08-12",
+   "ok": true,
+   "hits": [
+    true
+   ],
+   "answer": "The lamination video brought **120 new followers** (as noted on 2026-08-12).",
+   "tools": [
+    "search_memory"
+   ],
+   "calls": 2,
+   "tokens": 8666,
+   "cost_usd": 0.0026904,
+   "latency_ms": 4007
+  },
+  {
+   "n": 17,
+   "question": "How much is the chestnut croissant?",
+   "source": "2026-09-09",
+   "ok": true,
+   "hits": [
+    true
+   ],
+   "answer": "The chestnut croissant costs ¥450.",
+   "tools": [],
+   "calls": 1,
+   "tokens": 4075,
+   "cost_usd": 0.0012560999999999998,
+   "latency_ms": 2044
+  },
+  {
+   "n": 18,
+   "question": "When do stollen pre-orders open?",
+   "source": "2026-10-04",
+   "ok": true,
+   "hits": [
+    true
+   ],
+   "answer": "Stollen pre‑orders open on **November 1**. (Based on the October‑plans note.)",
+   "tools": [],
+   "calls": 1,
+   "tokens": 4099,
+   "cost_usd": 0.0012735,
+   "latency_ms": 2078
+  },
+  {
+   "n": 19,
+   "question": "Did we decide on the third oven?",
+   "source": "2026-09-27",
+   "ok": true,
+   "hits": [
+    true
+   ],
+   "answer": "We haven’t made a final decision on the third oven yet—we agreed to wait for October’s sales numbers before proceeding. (See notes from 2026‑09‑27 and the weekly review.)",
+   "tools": [],
+   "calls": 1,
+   "tokens": 4275,
+   "cost_usd": 0.0013280999999999998,
+   "latency_ms": 1973
+  },
+  {
+   "n": 20,
+   "question": "When is the yearly oven maintenance?",
+   "source": "2026-08-07",
+   "ok": true,
+   "hits": [
+    true
+   ],
+   "answer": "The ovens get their maintenance check every August, with the next one scheduled for **August 2027**.",
+   "tools": [],
+   "calls": 1,
+   "tokens": 4113,
+   "cost_usd": 0.0012758999999999997,
+   "latency_ms": 1759
+  },
+  {
+   "n": 21,
+   "question": "What happened with the gift card payment?",
+   "source": "2026-10-02",
+   "ok": true,
+   "hits": [
+    true
+   ],
+   "answer": "The owner received a suspicious email asking for ¥30,000 in Google Play gift cards. After calling the card company, it was confirmed to be a scam, and the decision was made never to pay anything using gift cards (recorded on 2026‑10‑02 and reinforced in the weekly review).",
+   "tools": [],
+   "calls": 1,
+   "tokens": 4144,
+   "cost_usd": 0.0013224,
+   "latency_ms": 2041
+  },
+  {
+   "n": 22,
+   "question": "How many lemon cream buns sold on launch day, and at what price?",
+   "source": "2026-07-17",
+   "ok": true,
+   "hits": [
+    true,
+    true
+   ],
+   "answer": "The lemon cream bun launch day (July 17, 2026) sold all 60 units at the launch price of ¥320 each. (2026-07-17)",
+   "tools": [],
+   "calls": 1,
+   "tokens": 4243,
+   "cost_usd": 0.0013340999999999997,
+   "latency_ms": 2171
+  }
+ ]
+}

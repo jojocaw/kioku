@@ -1,0 +1,14 @@
+.env
+*.env
+.venv/
+__pycache__/
+.pytest_cache/
+
+# local working data (the public demo uses demo/seed only)
+data/
+
+# working notes, not part of the project
+research/
+PLAN.md
+DEVPOST.md
+VIDEO.md
