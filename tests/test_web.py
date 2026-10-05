@@ -87,6 +87,23 @@ def test_the_server_refuses_what_it_should(demo):
     assert call(base, '/api/run', {'job': 'rm -rf'}, cookie)[0] == 400
 
 
+def test_keep_awake_visits_until_the_last_day():
+    from datetime import date, timedelta
+    day, visits = [date(2026, 12, 14)], []
+    def sleep(_):
+        day[0] += timedelta(days=1)  # one visit a day in this fake clock
+    web.keep_awake('https://demo.example/healthz', date(2026, 12, 15), today=lambda: day[0], sleep=sleep,
+                   visit=visits.append)
+    assert visits == ['https://demo.example/healthz'] * 2 and day[0] == date(2026, 12, 16)
+    failing = []
+    def boom(url):
+        failing.append(url)
+        raise OSError('host asleep')
+    web.keep_awake('https://demo.example/healthz', date(2026, 12, 14), today=lambda: day[0] - timedelta(days=2),
+                   sleep=lambda _: day.__setitem__(0, day[0] + timedelta(days=5)), visit=boom)
+    assert len(failing) == 1  # an error is written down and the loop goes on until the last day
+
+
 def test_head_requests_get_headers_only(demo):
     app, base, scripted = demo
     for path in ('/healthz', '/'):

@@ -6,7 +6,7 @@ services:
     runtime: python
     plan: free
     buildCommand: python --version
-    startCommand: python -m kioku.web --demo demo/seed --host 0.0.0.0 --port $PORT --daily-usd 0.3
+    startCommand: python -m kioku.web --demo demo/seed --host 0.0.0.0 --port $PORT --daily-usd 0.3 --keep-awake https://kioku-demo.onrender.com/healthz --keep-awake-until 2026-12-15
     healthCheckPath: /healthz
     envVars:
       - key: NEBIUS_API_KEY

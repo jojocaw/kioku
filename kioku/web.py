@@ -18,6 +18,7 @@ import sys
 import tempfile
 import threading
 import time
+import urllib.request
 from collections import deque
 from dataclasses import replace
 from datetime import date, datetime, timedelta, timezone
@@ -393,12 +394,27 @@ def make_handler(app: App):
     return Handler
 
 
+def keep_awake(url: str, until: date | None, every_s: int = 600, today=lambda: datetime.now(timezone.utc).date(),
+               sleep=time.sleep, visit=None) -> None:
+    """Free hosts put a service to sleep after 15 idle minutes, and the next visitor waits about a minute. A visit to
+    our own public address every 10 minutes keeps the demo awake for judges — until the given day, then it stops."""
+    visit = visit or (lambda u: urllib.request.urlopen(urllib.request.Request(u, method='HEAD'), timeout=60).close())
+    while until is None or today() <= until:
+        try:
+            visit(url)
+        except Exception as e:  # noqa: BLE001 — a missed visit only means the next visitor may wait a minute
+            sys.stderr.write(f'keep-awake: {type(e).__name__}: {e}\n')
+        sleep(every_s)
+
+
 def main(argv=None) -> None:
     ap = argparse.ArgumentParser(prog='python -m kioku.web')
     ap.add_argument('--demo', metavar='SEED', help='serve visitor sandboxes copied from this seed folder')
     ap.add_argument('--host', default='127.0.0.1')
     ap.add_argument('--port', type=int, default=8700)
     ap.add_argument('--daily-usd', type=float, default=1.0, help='demo: what all visitors may spend per day, in total')
+    ap.add_argument('--keep-awake', metavar='URL', help="visit this public address every 10 minutes (free hosts' idle sleep)")
+    ap.add_argument('--keep-awake-until', metavar='YYYY-MM-DD', type=date.fromisoformat, help='last day of --keep-awake')
     a = ap.parse_args(argv)
     seed = Path(a.demo).resolve() if a.demo else None
     overrides = dict(daily_token_budget=150_000, daily_usd_budget=0.05) if seed else {}
@@ -409,6 +425,8 @@ def main(argv=None) -> None:
     server = ThreadingHTTPServer((a.host, a.port), make_handler(app))
     print(f'Kioku on http://{a.host}:{a.port}  ({"demo: " + str(seed) if seed else "owner: " + str(settings.data_dir)})',
           flush=True)
+    if a.keep_awake:
+        threading.Thread(target=keep_awake, args=(a.keep_awake, a.keep_awake_until), daemon=True).start()
     try:
         server.serve_forever()
     except KeyboardInterrupt:

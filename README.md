@@ -7,8 +7,8 @@ outside the model**, with a receipt for every decision.
 It runs on **NVIDIA Nemotron** open models through **Nebius Token Factory**, and it is small enough to run on a free
 512 MB host: the whole app is standard-library Python (no dependencies).
 
-- **Live demo: https://kioku-demo.onrender.com** (free host: after 15 idle minutes the first visit can take up to a
-  minute to wake) · Video (under 3 min): _(link)_
+- **Live demo: https://kioku-demo.onrender.com** (free host, kept awake until the judging ends on 2026-12-15; if it
+  was asleep, the first visit can take up to a minute) · Video (under 3 min): _(link)_
 - Track: Personal AI · License: MIT
 
 ---
